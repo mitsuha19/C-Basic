@@ -2,31 +2,34 @@
 #include<stdlib.h>
 #include<string.h>
 
-void kapital(char *ptr);
+int panjang(char *ptr);
 
 int main(){
     char *string = (char*) malloc(100 * sizeof(char));
-    printf("Masukkan array (string): ");
+    printf("masukkan array (string): ");
     fgets(string, 100, stdin);
     string[strcspn(string, "\n")] = '\0';
-    kapital(string);
+
+    int hasil = panjang(string);
+    printf("Panjang string : %d", hasil);
     free(string);
-    return 0;   
+    return 0;
 }
 
-void kapital(char *ptr){
+int panjang(char *ptr){
     int n = strlen(ptr);
     char * temp = (char*) malloc((n + 1) * sizeof(char));
-    strcpy(temp, ptr);
+    int jumlah = 0;
+    strcpy(temp, ptr); 
     for (int i = 0; i < n; i++)
     {
-        if (temp[i] >= 'a' && temp[i] <= 'z')
+        if (temp[i] != '\0' && temp[i] != '\n')
         {
-            temp[i] = temp[i] - 32 ;
+            jumlah ++;
         }
         
     }
-    strcpy(ptr, temp);
-    printf("%s", ptr);
+    return jumlah;
+    strcpy(ptr, temp); 
     free(temp);
 }

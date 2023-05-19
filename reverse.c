@@ -1,25 +1,31 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
-int main(){
-    int n = 0 ;
-    scanf("%d", &n);
-    int arr[n];
-    int a;
+void reverse(char *str);
 
-    for (int i = 0; i < n; i++)
-    {   
-        a = i + 1;
-        printf("nilai ke %d : ", a);
-        scanf("%d", &arr[i]);
-
-    }
-
-    for (int i = 0; i < n; i++)
-    {   
-        a = i + 1;
-        printf("%d ", arr[n - a]);
-    }
-    
-    
+int main()
+{
+    char * string = (char*) malloc(100 * sizeof(char));
+    printf("Masukkan array (string): ");
+    fgets(string, 100, stdin);
+    string[strcspn(string, "\n")] = '\0';
+    reverse(string);
+    printf("Reversed: %s", string);
+    free (string);
     return 0;
+}
+
+void reverse(char *str)
+{
+    int n = strlen(str);
+    char * temp = (char*) malloc((n + 1) * sizeof(char)); 
+    strcpy(temp, str); 
+    for (int i = 0; i < n/2; i++) {
+        char c = temp[i];
+        temp[i] = temp[n-1-i];
+        temp[n-1-i] = c;
+    }
+    strcpy(str, temp); 
+    free(temp); 
 }
