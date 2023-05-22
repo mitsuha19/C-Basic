@@ -1,0 +1,4 @@
+nim#nama#ipk
+11S18005#Abdullah Ubaid#3.35
+11S18044#Kevin Sihaloho#3.6
+
